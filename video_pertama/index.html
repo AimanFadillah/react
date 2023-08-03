@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    
+    <div id="root">
+
+    </div>
+
+<script type="text/babel" >
+    const container = document.querySelector("#root");
+    const root = ReactDOM.createRoot(container);
+
+    function Salam ({nama}) {
+        return (<h1 >Hai nama saya {nama ? nama : "aiman"}</h1>)
+    }
+
+    function List () {
+        const data = ["man","budiman","geming"]
+        return (
+            <>
+                <ul>{ data.map((data) => ( <li key={data} >{data}</li> )) }</ul>
+            </>
+        )
+    }
+
+    function ButtonLike () {
+        const [like,setLike] = React.useState(0); 
+
+        function PlusClick () {
+            setLike(like + 1)
+        }
+
+        return (<button onClick={PlusClick} >like ({like})</button>)
+    }
+
+    function Header () {
+        return (
+        <>
+            <ButtonLike />
+            <Salam nama="budiman"/>
+                <h1>Budi</h1>
+            <Salam />
+            <List />
+        </>
+        )
+    }
+
+    root.render(<Header />)
+</script>
+
+</body>
+</html>

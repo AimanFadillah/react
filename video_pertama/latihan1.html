@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    
+    <div id="root">
+
+    </div>
+
+<script type="text/babel" >
+    const container = document.querySelector("#root");
+    const root = ReactDOM.createRoot(container);
+
+    function Navigasi ({isi,fungsi,disabled}) {
+        return ( <button disabled={disabled == 1 ? true : false} onClick={fungsi} >{isi}</button> )
+    }
+
+    function ButtonLike () {
+        const [like,setLike] = React.useState(0); 
+
+        function PlusClick () {
+            if(like == 9) return setLike("done")
+            setLike(like + 1)
+        }
+
+        function MinClick () {
+            if(like == 0) return ;
+            setLike(like - 1)
+        }
+
+        function Reset () {
+            setLike(0)
+        }
+
+        return (<>
+            <Navigasi isi="-" fungsi={MinClick} disabled={like === "done" ? 1 : 0 } /> {like} <Navigasi isi="+" fungsi={PlusClick} disabled={like === "done" ? 1 : 0 } /> <Navigasi disabled={like !== "done" ? 1 : 0 } isi="Reset" fungsi={Reset} />
+            </>
+        )
+
+    }
+
+    root.render(<ButtonLike />)
+</script>
+
+</body>
+</html>
